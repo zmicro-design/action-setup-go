@@ -1,0 +1,36 @@
+name: "Setup Go with Zmicro"
+description: "github action for setuping go with Zmicro"
+author: "Zero <GitHub: whatwewant>"
+branding:
+  icon: "message-square"
+  color: "green"
+inputs:
+  go-version:
+    required: false
+    description: specify go version
+    default: "v1.20"
+outputs:
+  go-version:
+    description: 'The installed go version.'
+    value: ${{ steps.go.outputs.go-version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Zmicro
+      uses: zmicro-design/action-setup-zmicro@v1
+
+    - name: Install Zmicro Setup Plugin
+      shell: bash
+      run: zmicro plugin install setup
+
+    - name: Setup Go
+      shell: bash
+      id: go
+      run: |
+        export GO_VERSION=${{ inputs.go-version }}
+        zmicro setup action go
+
+        go version
+        
+        echo "go-version=$(go version)" >> $GITHUB_OUTPUT
