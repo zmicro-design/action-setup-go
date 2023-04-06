@@ -29,12 +29,5 @@ runs:
       id: go
       run: |
         export GO_VERSION=${{ inputs.go-version }}
-        zmicro setup action go
 
-        # add to PATH
-        echo "/data/plugins/gvm/versions/${GO_VERSION}/bin" >> $GITHUB_PATH
-        echo "${HOME}/.go/bin" >> $GITHUB_PATH
-
-        go version
-        
-        echo "go-version=$(go version)" >> $GITHUB_OUTPUT
+        zmicro setup github-actions go

@@ -1,6 +1,6 @@
 {
   "name": "@zcorky/action-setup-go",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "github action for setup go",
   "keywords": [
     "action",
